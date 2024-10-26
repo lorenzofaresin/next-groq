@@ -1,4 +1,4 @@
-FROM node:22-slim AS base
+FROM --platform=linux/arm64 node:22-slim AS base
 
 # 1. Install dependencies only when needed
 FROM base AS deps
