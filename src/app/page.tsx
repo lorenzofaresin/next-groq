@@ -11,7 +11,7 @@ export default function Home() {
         <>
             <form
                 action={formAction}
-                className="flex gap-2"
+                className="flex gap-2 sticky top-4 z-10 w-full justify-center backdrop-blur-sm"
             >
                 <input
                     type="text"
@@ -19,17 +19,17 @@ export default function Home() {
                     name="q"
                     required
                     placeholder="Flight plan..."
-                    className="border rounded p-1 bg-black"
+                    className="border rounded p-2 bg-black w-full"
                 />
                 <button
                     disabled={isPending}
-                    className="border rounded py-1 px-5 disabled:text-gray-500 disabled:cursor-not-allowed disabled:border-gray-500 disabled:animate-pulse"
+                    className="border rounded p-2 px-5 bg-black disabled:text-gray-500 disabled:cursor-not-allowed disabled:border-gray-500 disabled:animate-pulse"
                 >
-                    Land 🚀
+                    Land&nbsp;🚀
                 </button>
             </form>
-            <div className="flex gap-4">
-                {isPending ? <Skeleton /> : <code className="whitespace-pre-wrap">{state}</code>}
+            <div className="flex gap-4 h-full overflow-auto">
+                {isPending ? <Skeleton /> : <code className="whitespace-pre-wrap block">{state}</code>}
             </div>
         </>);
 }
