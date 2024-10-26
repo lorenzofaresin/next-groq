@@ -11,8 +11,8 @@ jobs:
     env:
       REGISTRY: ghcr.io
       IMAGE_NAME: next-groq:prod
-      KUBE_DEPLOYMENT_NAME: ${{ secrets.KUBE_DEPLOYMENT_NAME }}
-      KUBE_NAMESPACE: ${{ secrets.KUBE_NAMESPACE }}
+#      KUBE_DEPLOYMENT_NAME: <define in github Project ⮕ Settings ⮕ Secret and Variables ⮕ Actions>
+#      KUBE_NAMESPACE: <define in github Project ⮕ Settings ⮕ Secret and Variables ⮕ Actions>
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
     steps:
       - name: Checkout
