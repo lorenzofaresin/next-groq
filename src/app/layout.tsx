@@ -1,10 +1,12 @@
 import ThemeSwitch from "@/app/components/theme-switch";
-import logo from "@/assets/images/logo.png";
+import guthubImg from "@/assets/images/github.svg";
+import logoImg from "@/assets/images/logo.png";
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import localFont from "next/font/local";
 import "./globals.css";
 import Image from "next/image";
+import Link from "next/link";
 
 const geistSans = localFont({
     src: "./fonts/GeistVF.woff",
@@ -57,22 +59,38 @@ export default function RootLayout({
         <ThemeProvider attribute="class">
             <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen max-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
                 <header className="flex gap-4 flex-wrap items-center justify-center">
-                    <Image src={logo} alt="logo" className="w-20 h-20" />
-                    <h1 className="text-4xl text-black dark:text-white">{title}</h1>
+                    <Link href="/">
+                        <Image src={logoImg} alt="logo" className="w-20 h-20" />
+                    </Link>
+                    <Link href="/">
+                        <h1 className="text-4xl text-black dark:text-white">{title}</h1>
+                    </Link>
                 </header>
                 <main className="flex flex-col gap-8 w-full max-w-5xl mx-auto items-center">
                     {children}
                 </main>
-                <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-                    <a
-                        href="https://github.com/lorenzofaresin"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center"
-                    >
-                        Powered by Lorenzo<span className="animate-pulse"> ❤️</span>Faresin
-                    </a>
-                    <ThemeSwitch />
+                <footer className="flex flex-col gap-4">
+                    <div className="flex items-center">
+                        @
+                        <a
+                            href="https://github.com/lorenzofaresin"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="underline"
+                        >
+                            Lorenzo<span className="animate-pulse"> ❤️</span>Faresin
+                        </a>
+                    </div>
+                    <div className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
+                        <ThemeSwitch />
+                        <Link
+                            href="https://github.com/lorenzofaresin/next-groq"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <Image src={guthubImg} alt="github" className="w-8 h-8 dark:invert" />
+                        </Link>
+                    </div>
                 </footer>
             </div>
         </ThemeProvider>

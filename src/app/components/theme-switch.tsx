@@ -17,7 +17,7 @@ export default function ThemeSwitch() {
     }
 
     return (
-        <select value={theme} onChange={e => setTheme(e.target.value)} className="border rounded p-2">
+        <select value={theme} onChange={e => setTheme(e.target.value)} className="border p-2">
             <option value="system">System</option>
             <option value="dark">Dark</option>
             <option value="light">Light</option>
