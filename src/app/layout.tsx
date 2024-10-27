@@ -1,5 +1,7 @@
+import ThemeSwitch from "@/app/components/theme-switch";
 import logo from "@/assets/images/logo.png";
 import type { Metadata } from "next";
+import { ThemeProvider } from "next-themes";
 import localFont from "next/font/local";
 import "./globals.css";
 import Image from "next/image";
@@ -40,7 +42,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang={locale}>
+        <html lang={locale} suppressHydrationWarning>
         <head>
             <link rel="icon" type="image/png" href="/favicon-48x48.png" sizes="48x48" />
             <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -51,25 +53,28 @@ export default function RootLayout({
         <body
             className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-        <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen max-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-            <header className="flex gap-4 flex-wrap items-center justify-center">
-                <Image src={logo} alt="logo" className="w-20 h-20" />
-                <h1 className="text-4xl">{title}</h1>
-            </header>
-            <main className="flex flex-col gap-8 w-full max-w-5xl mx-auto items-center">
-                {children}
-            </main>
-            <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-                <a
-                    href="https://github.com/lorenzofaresin"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center"
-                >
-                    Powered by Lorenzo<span className="animate-pulse"> ❤️</span>Faresin
-                </a>
-            </footer>
-        </div>
+        <ThemeProvider attribute="class">
+            <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen max-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+                <header className="flex gap-4 flex-wrap items-center justify-center">
+                    <Image src={logo} alt="logo" className="w-20 h-20" />
+                    <h1 className="text-4xl text-black dark:text-white">{title}</h1>
+                </header>
+                <main className="flex flex-col gap-8 w-full max-w-5xl mx-auto items-center">
+                    {children}
+                </main>
+                <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
+                    <a
+                        href="https://github.com/lorenzofaresin"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center"
+                    >
+                        Powered by Lorenzo<span className="animate-pulse"> ❤️</span>Faresin
+                    </a>
+                    <ThemeSwitch />
+                </footer>
+            </div>
+        </ThemeProvider>
         </body>
         </html>
     );

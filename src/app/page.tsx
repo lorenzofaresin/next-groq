@@ -19,11 +19,11 @@ export default function Home() {
                     name="q"
                     required
                     placeholder="Flight plan..."
-                    className="border rounded p-2 bg-black w-full"
+                    className="border rounded p-2 w-full"
                 />
                 <button
                     disabled={isPending}
-                    className="border rounded p-2 px-5 bg-black disabled:text-gray-500 disabled:cursor-not-allowed disabled:border-gray-500 disabled:animate-pulse"
+                    className="border rounded p-2 px-5 disabled:text-gray-500 disabled:cursor-not-allowed disabled:border-gray-500 disabled:animate-pulse"
                 >
                     Land&nbsp;🚀
                 </button>
