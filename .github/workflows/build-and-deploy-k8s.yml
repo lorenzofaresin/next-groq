@@ -12,8 +12,8 @@ jobs:
     env:
       REGISTRY: ghcr.io
       IMAGE_NAME: next-groq:prod
-      KUBE_NAMESPACE: next-groq-site
-      KUBE_DEPLOYMENT_NAME: prj-next-groq
+      KUBE_NAMESPACE: prj-next-groq
+      KUBE_DEPLOYMENT_NAME: next-groq-site
 
     steps:
       - uses: actions-hub/kubectl@master
