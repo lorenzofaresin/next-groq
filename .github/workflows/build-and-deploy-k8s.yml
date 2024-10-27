@@ -16,14 +16,6 @@ jobs:
       KUBE_DEPLOYMENT_NAME: next-groq-site
 
     steps:
-      - uses: actions-hub/kubectl@master
-        env:
-          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
-
-      - uses: actions-hub/kubectl@master
-        with:
-          args: rollout restart deployment/${{ env.KUBE_DEPLOYMENT_NAME }} -n ${{ env.KUBE_NAMESPACE }}
-
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -33,11 +25,6 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-        with:
-          install: true
 
       - name: Build and push
         uses: docker/build-push-action@v6
@@ -49,10 +36,9 @@ jobs:
           file: .docker/Dockerfile
           target: runner
 
-      - uses: actions-hub/kubectl@master
+      - name: Kubectl Rollout restart with newer image
+        uses: actions-hub/kubectl@master
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
-
-      - uses: actions-hub/kubectl@master
         with:
           args: rollout restart deployment/${{ env.KUBE_DEPLOYMENT_NAME }} -n ${{ env.KUBE_NAMESPACE }}
